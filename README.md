@@ -61,7 +61,7 @@ Indicada por cada entidade:
 "/Register"
 "/sobre"
 "/add"
-"/"
+"/wishlist"
 "/"
 ```
 
