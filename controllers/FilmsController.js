@@ -120,12 +120,6 @@ module.exports = class FilmsController {
         raw: true,
     })
 
-      let emptyToughts = false
-
-      if (toughts.length === 0) {
-          emptyToughts = true
-      }
-
       res.render('films/wishlist', { movies})
   }
     
