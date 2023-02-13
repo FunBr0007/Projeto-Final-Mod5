@@ -63,8 +63,10 @@
       color: #f6982d;
     
     }
-    
-
+        
+    h1{
+    color: white;
+    }
 
     /* LOGIN E REGISTER */
     .auth-container {
