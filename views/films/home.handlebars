@@ -1,0 +1,8 @@
+<nav id="navbar">
+        <h1>Filmes </h1>
+        <ul>
+            {{#each filmData}}
+                <a href="/sobre/{{this.id}}"><img src="{{this.image}}" alt=""></a>
+            {{/each}}
+        </ul>
+</nav>

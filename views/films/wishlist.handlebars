@@ -1,0 +1,6 @@
+<form action="/wishlist">
+<input type="hidden" name="id" value="{{movies.id}}">
+    {{#each movies}}
+        <img src="{{this.image}}" alt="">
+    {{/each}}
+</form>

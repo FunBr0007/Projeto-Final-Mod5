@@ -1,0 +1,12 @@
+<form action="/sobre">
+<input type="hidden" name="id" value="{{movie.id}}">
+{{#if movie}}
+  <h1>{{movie.name}}</h1>
+  <img src="{{imagePath}}" alt="Imagem do filme">
+  <p>{{movie.synopse}}</p>
+{{else}}
+  {{message}}
+{{/if}}
+<br>
+</form>
+<a href="/add/{{movie.id}}">Adicionar a lista de desejos</a>
