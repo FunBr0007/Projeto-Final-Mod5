@@ -9,6 +9,6 @@ router.get('/', FilmsController.showHome)
 router.get('/sobre/:id', FilmsController.showOneFilm)
 router.get('/add/:id', checkAuth, FilmsController.addToWishlist)
 router.post('/add/:id', checkAuth, FilmsController.addToWishlist)
-router.get('/whishlist', checkAuth, FilmsController.showWishlist)
+router.get('/wishlist', checkAuth, FilmsController.showWishlist)
 
 module.exports = router
