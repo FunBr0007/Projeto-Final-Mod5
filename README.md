@@ -53,7 +53,7 @@ Ao rodar o comando, a mensagem abaixo deverá aparecer:
 
 ## Rotas configuradas neste projeto 
 
-**Rotas da FilmesAPI**
+**Rotas do site Filmes**
 
 Indicada por cada entidade:
 ```
@@ -61,10 +61,10 @@ Indicada por cada entidade:
 "/Register"
 "/sobre"
 "/add"
-"/"
-"/"
+"/wishlist"
+"/del"
 ```
 
 **IDEALIZADORES:**
 [Marlon Dantas](https://github.com/Marlon-Dantas)
-[Thierry]()
+[Thierry](https://github.com/FunBr0007)
