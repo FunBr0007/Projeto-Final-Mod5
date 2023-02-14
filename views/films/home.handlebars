@@ -1,8 +1,44 @@
-<nav id="navbar">
-        <h1>Filmes </h1>
-        <ul>
-            {{#each filmData}}
+<aside>
+    <div id="rank">
+<ol>
+    <h3>Top 20 melhores filmes de todos os <br> tempos segundo o <span style="color:orange">IMDB</span>:</h3>
+    <li><a href="https://www.imdb.com/title/tt0111161/" target="_blank">1° - Redenção de Shawshank (1994) - 9.3</a></li>
+    <li><a href="https://www.imdb.com/title/tt0068646/" target="_blank">2° - O Poderoso Chefão (1972) - 9.2</a></li>
+    <li><a href="https://www.imdb.com/title/tt0071562/" target="_blank">3° - O Poderoso Chefão: Parte II (1974) - 9.0</a>
+    </li>
+    <li><a href="https://www.imdb.com/title/tt0468569/" target="_blank">4° - O Cavaleiro das Trevas (2008) - 9.0</a></li>
+    <li><a href="https://www.imdb.com/title/tt0050083/" target="_blank">5° - Doze Homens e uma Sentença (1957) - 8.9</a></li>
+    <li><a href="https://www.imdb.com/title/tt0108052/" target="_blank">6° - A Lista de Schindler (1993) - 8.9</a></li>
+    <li><a href="https://www.imdb.com/title/tt0167260/" target="_blank">7° - O Senhor dos Anéis: O Retorno do Rei (2003) -
+            8.9</a></li>
+    <li><a href="https://www.imdb.com/title/tt0110912/" target="_blank">8° - Pulp Fiction: Tempo de Violência (1994) -
+            8.9</a></li>
+    <li><a href="https://www.imdb.com/title/tt0120737/" target="_blank">9° - O Senhor dos Anéis: A Sociedade do Anel (2001) -
+            8.8</a></li>
+    <li><a href="https://www.imdb.com/title/tt0060196/" target="_blank">10° - O Bom, o Mau e o Feio (1966) - 8.8</a></li>
+    <li><a href="https://www.imdb.com/title/tt0109830/" target="_blank">11° - Forrest Gump: O Contador de Histórias (1994) -
+            8.8</a></li>
+    <li><a href="https://www.imdb.com/title/tt0469569/" target="_blank">12° - A Origem (2010) - 8.8</a></li>
+    <li><a href="https://www.imdb.com/title/tt0080684/" target="_blank">13° - O Império Contra-Ataca (1980) - 8.7</a></li>
+    <li><a href="https://www.imdb.com/title/tt0167261/" target="_blank">14° - O Senhor dos Anéis: As Duas Torres (2002) -
+            8.7</a></li>
+  <li><a href="https://www.imdb.com/title/tt0133093/">15° - Matrix (1999) - 8.7</a></li>
+  <li><a href="https://www.imdb.com/title/tt0099685/">16° - Bons Companheiros (1990) - 8.7</a></li>
+    <li><a href="https://www.imdb.com/title/tt0073486/" target="_blank"> 17° Um Estranho no Ninho (1975) - 8.7</a></li>
+    <li><a href="https://www.imdb.com/title/tt0047478/" target="_blank"> 18° Sete Samurais (1954) - 8.6</a></li>
+    <li><a href="https://www.imdb.com/title/tt0317248/" target="_blank"> 19° Cidade de Deus (2002) - 8.6</a></li>
+    <li><a href="https://www.imdb.com/title/tt0114369/" target="_blank"> 20° Seven (1995) - 8.6</a></li>
+
+</ol>
+    </div>
+ 
+    <main>
+        <h1>Filmes: </h1>
+        <div id="filmes">
+            <ul>
+                {{#each filmData}}
                 <a href="/sobre/{{this.id}}"><img src="{{this.image}}" alt=""></a>
-            {{/each}}
-        </ul>
-</nav>
+                {{/each}}
+            </ul>
+        </div>
+    </main>

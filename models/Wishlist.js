@@ -10,9 +10,25 @@ const Wishlist = db.define('Wishlist', {
       primaryKey: true,
       autoIncrement: true,
     },
+    name:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    synopse:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    image:{
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    FilmId:{
+      type: DataTypes.INTEGER,
+      allowNull: false
+    }
   });
 
-User.belongsToMany(Film, { through: Wishlist, foreignKey: 'userId' });
-Film.belongsToMany(User, { through: Wishlist, foreignKey: 'filmId' });
-
+  Wishlist.belongsTo(User)
+  User.hasMany(Wishlist)
+  
 module.exports = Wishlist

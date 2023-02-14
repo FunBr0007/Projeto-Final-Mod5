@@ -1,20 +1,14 @@
-<form action="/wishlist">
-<h2>Minha Lista de Desejos</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>Título</th>
-      <th>Imagem</th>
-    </tr>
-  </thead>
-  <tbody>
+<form action="/wishlist" method="post" id="container-lista">
+<h1>Minha lista de desejos</h1>
+  {{#if wishlist}}
     {{#each wishlist}}
-    <tr>
-      <td>{{this.name}}</td>
-      <td><img src="{{this.image}}" alt="{{this.name}}"></td>
-    </tr>
+  <ul>
+    <img src="{{this.image}}" alt="">
+    <input type="hidden" value="{{this.FilmId}}" name="idFilm">
+    <input type="submit" value="Deletar">
+  </ul>
     {{/each}}
-  </tbody>
-</table>
+    {{else}}
+    <h3>Sua lista de desejos está vazia!</h3>
+    {{/if}}
 </form>

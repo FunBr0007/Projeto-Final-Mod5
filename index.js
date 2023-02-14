@@ -77,11 +77,11 @@ app.use('/add/:id', authRoutes)
 
 app.get('/', FilmsController.showHome)
 app.get('/sobre', FilmsController.showOneFilm)
-app.get('/wishlist', authRoutes, FilmsController.showWishlist)
+
 
 
 conn
-    // .sync({force: true})
+    //.sync({force: true})
     .sync()
     .then(() => {
         app.listen(3000)

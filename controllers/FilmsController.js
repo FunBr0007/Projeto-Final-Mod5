@@ -55,6 +55,7 @@ module.exports = class FilmsController {
     }
 
     static async addToWishlist(req, res) {
+        const user = req.session.userid
         const imageUrl = req.body.imagePath
         const parsedURL = url.parse(imageUrl);
         const path = parsedURL.pathname;
@@ -63,7 +64,12 @@ module.exports = class FilmsController {
           name: req.body.name,
           synopse: req.body.synopse,
           image: path,
-          UserId: req.session.userid
+          UserId: req.session.userid,
+          FilmId: req.body.FilmId
+        }
+
+        if(!user) {
+          return res.redirect('/');
         }
 
         try {
@@ -80,28 +86,41 @@ module.exports = class FilmsController {
     } 
         
     static async showWishlist(req, res) {
-      const UserId = req.session.userid;
+      const userId = req.session.userid;
       const user = await User.findOne({
         where: {
-          id: parseInt(`${UserId}`)
+          id: userId
         },
         include: Wishlist,
-        raw: true,
+        plain:true
       });
-    
-      const wishlist = await Wishlist.findAll({
-        where: {
-          UserId: user.id
-        },
-        raw: true
-      })
-
+      
+      const wishlist = user.Wishlists.map((result) => result.dataValues)
+      
       if(!user) {
-        res.redirect('/')
+        return res.redirect('/');
       }
-    
-      res.render('films/wishlist', {wishlist: wishlist.dataValues})
-    }
-    
 
-}
+      res.render('films/wishlist', { wishlist });
+    }
+
+    static async removeWishlist(req, res) {
+      const userId = req.session.userid;
+      const filmId = req.body.idFilm;
+      
+      const wishlistItem = await Wishlist.findOne({
+        where: {
+          UserId: userId,
+          FilmId: filmId
+        }
+      });
+
+      if (!wishlistItem) {
+        return res.redirect('/wishlist');
+      }
+
+      await wishlistItem.destroy();
+      res.redirect('/wishlist');
+    }
+     
+  }
