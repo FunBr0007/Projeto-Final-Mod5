@@ -1,6 +1,20 @@
 <form action="/wishlist">
-<input type="hidden" name="id" value="{{movies.id}}">
-    {{#each movies}}
-        <img src="{{this.image}}" alt="">
+<h2>Minha Lista de Desejos</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Título</th>
+      <th>Imagem</th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each wishlist}}
+    <tr>
+      <td>{{this.name}}</td>
+      <td><img src="{{this.image}}" alt="{{this.name}}"></td>
+    </tr>
     {{/each}}
+  </tbody>
+</table>
 </form>
