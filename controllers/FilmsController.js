@@ -3,6 +3,7 @@ const User = require('../models/User')
 const { Sequelize } = require('sequelize')
 const fs = require('fs')
 const Wishlist = require('../models/Wishlist')
+const url = require("url");
 
 module.exports = class FilmsController {
     static async showHome(req, res) {
@@ -54,74 +55,53 @@ module.exports = class FilmsController {
     }
 
     static async addToWishlist(req, res) {
-        const userId = req.session.userid;
-        const filmId = req.params.id;
-        
-            if (!userId) {
-              return res.render('films/whitelistFilms', {message: 'Usuário não encontrado'});
-            }
-          
-            try {
-              const user = await User.findOne({
-                where: {
-                  id: userId,
-                },
-              });
-              
-                const films = await Film.findAll();
-                const filmData = films.map((result) => result.dataValues)
-          
-              if (!user) {
-                return res.render('films/whitelistFilms', {message: 'Usuário não encontrado'});
-              }
-          
-              const film = await Film.findOne({
-                where: {
-                  id: filmId,
-                },
-              });
-          
-              if (!film) {
-                return res.render('films/whitelistFilms', {message: 'Filme não encontrado'});
-              }
-          
-              await Wishlist.create({
-                userId,
-                filmId,
-              });
-          
-              return res.render('films/addWhitelistFilms', {filmData});
-            } catch (error) {
-              console.error(error);
-              return res.status(500).send('Erro no servidor: Não foi possível adicionar o filme à lista de desejos');
-            }
+        const imageUrl = req.body.imagePath
+        const parsedURL = url.parse(imageUrl);
+        const path = parsedURL.pathname;
+
+        const film = {
+          name: req.body.name,
+          synopse: req.body.synopse,
+          image: path,
+          UserId: req.session.userid
+        }
+
+        try {
+          await Wishlist.create(film)
+
+          req.flash('message', 'Filme adicionado com sucesso')
+
+          req.session.save(() => {
+            res.redirect('/')
+          })
+        } catch (error) {
+          console.log(error)
+        }
     } 
         
     static async showWishlist(req, res) {
-      const userId = req.session.userid;
-
+      const UserId = req.session.userid;
       const user = await User.findOne({
-          where: {
-              id: userId,
-          },
-          include: Film,
-          plain: true,
+        where: {
+          id: parseInt(`${UserId}`)
+        },
+        include: Wishlist,
+        raw: true,
+      });
+    
+      const wishlist = await Wishlist.findAll({
+        where: {
+          UserId: user.id
+        },
+        raw: true
       })
 
-      // check if user exists
-      if (!user) {
-          res.redirect('/login')
+      if(!user) {
+        res.redirect('/')
       }
-
-      const movies = await User.findOne({
-        where: {
-            id: userId,
-        },
-        raw: true,
-    })
-
-      res.render('films/wishlist', { movies})
-  }
+    
+      res.render('films/wishlist', {wishlist: wishlist.dataValues})
+    }
     
 
 }
